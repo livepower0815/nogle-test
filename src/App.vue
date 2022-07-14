@@ -1,6 +1,7 @@
 <script setup>
 import { Ws } from '@/websocket/ws.ts'
 import { ref } from 'vue'
+import { formatMoneyInt, formatNumberWithFixed } from '@/utils/numberFormat.js'
 
 // OrderBook WebSocket API:
 let orderBookWs = new Ws('wss://ws.btse.com/ws/oss/futures')
@@ -35,9 +36,10 @@ const lastPriceStatus = ref('sell')
     </div>
     <div class="trade">
       <div v-for="item in 8" class="trade-item">
-        <div class="trade-item__price sell-color">20,003.0</div>
-        <div class="trade-item__size">666</div>
-        <div class="trade-item__total">1,666</div>
+        <!-- <div class="trade-item__price sell-color">20,003.0</div> -->
+        <div class="trade-item__price sell-color">{{ formatNumberWithFixed('20004.5') }}</div>
+        <div class="trade-item__size">{{ formatMoneyInt('1666') }}</div>
+        <div class="trade-item__total">{{ formatMoneyInt('2348') }}</div>
       </div>
     </div>
     <div class="last-price" :class="lastPriceStatus">
@@ -46,9 +48,9 @@ const lastPriceStatus = ref('sell')
     </div>
     <div class="trade">
       <div v-for="item in 8" class="trade-item">
-        <div class="trade-item__price buy-color">19,993.0</div>
-        <div class="trade-item__size">666</div>
-        <div class="trade-item__total">1,666</div>
+        <div class="trade-item__price buy-color">{{ formatNumberWithFixed('19993.0') }}</div>
+        <div class="trade-item__size">{{ formatMoneyInt('1666') }}</div>
+        <div class="trade-item__total">{{ formatMoneyInt('2348') }}</div>
       </div>
     </div>
   </div>
