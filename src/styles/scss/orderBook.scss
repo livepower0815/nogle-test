@@ -1,0 +1,95 @@
+.container {
+  width: 240px;
+  height: 452px;
+  background-color: $Background;
+
+  .title {
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .header {
+    display: flex;
+    font-size: 12px;
+    color: $Quote-table-head-text;
+    margin: 6px 0;
+
+    &-price {
+      flex: 1;
+      padding-left: 12px;
+    }
+    &-size {
+      flex: 1;
+      text-align: center;
+    }
+    &-total {
+      flex: 1;
+      text-align: right;
+      padding-right: 12px;
+    }
+  }
+
+  .trade {
+    font-family: monospace;
+    font-size: 12px;
+
+    &-item {
+      display: flex;
+      padding: 4px 0;
+
+      &__price {
+        width: 76px;
+        padding-left: 12px;
+      }
+      &__size {
+        width: 56px;
+        text-align: right;
+      }
+      &__total {
+        flex: 1;
+        text-align: right;
+        padding-right: 12px;
+      }
+    }
+  }
+
+  .last-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-family: monospace;
+
+    &.buy {
+      color: $Buy-quote-price-text;
+      background-color: $Buy-quote-accumulative-total-size-bar;
+    }
+    &.sell {
+      color: $Sell-quote-price-text;
+      background-color: $Sell-quote-accumulative-total-size-bar;
+    }
+
+    .number {
+      padding-right: 4px;
+    }
+
+    .icon-arrow {
+      width: 14px;
+      height: 14px;
+      mask-image: url('@/assets/IconArrowDown.svg');
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+
+      &.buy {
+        background-color: $Buy-quote-price-text;
+        transform: rotate(180deg);
+      }
+      &.sell {
+        background-color: $Sell-quote-price-text;
+      }
+    }
+  }
+}

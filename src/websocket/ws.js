@@ -4,12 +4,18 @@ export class Ws {
   // WebSocket 实例
   ws
   // 重連的 timer id
-  reConnectTimeId: null | number = null
+  reConnectTimeId = null
   // 是否為手動關閉
   isCustomClose = false
 
-  constructor(url) {
+  // callback functions
+  openFn
+  messageFn
+
+  constructor({ url, openFn, messageFn }) {
     this.url = url
+    this.openFn = openFn
+    this.messageFn = messageFn
     this.createWs()
   }
 
@@ -28,11 +34,17 @@ export class Ws {
 
   // 监听成功
   onopen() {
-    this.ws.onopen = () => {
-      console.log('WS opened!!')
-    }
+    if (this.openFn) this.ws.onopen = this.openFn
+    else this.ws.onopen = () => { console.log('WS opened!!') }
   }
 
+  // 接收 WebSocket 消息
+  onmessage() {
+    if (this.messageFn) this.ws.onmessage = this.messageFn
+    else this.ws.onmessage = event => { console.log('event:::', event) }
+  }
+
+  // post message
   send(data) {
     this.ws.send(JSON.stringify(data))
   }
@@ -54,15 +66,6 @@ export class Ws {
         console.log('onclose')
         this.reconnection()
       }
-    }
-  }
-
-  // 接收 WebSocket 消息
-  onmessage() {
-    this.ws.onmessage = event => {
-      console.log('event:::', event)
-      // const eventData = JSON.parse(event.data)
-      // WS message 事件管理
     }
   }
 

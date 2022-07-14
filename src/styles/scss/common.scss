@@ -4,5 +4,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #F0F4F8;
+  color: $Default-text;
+}
+
+.buy-color {
+  color: $Buy-quote-price-text;
+}
+.sell-color {
+  color: $Sell-quote-price-text;
 }
