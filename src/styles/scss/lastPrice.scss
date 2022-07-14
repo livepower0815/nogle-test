@@ -1,0 +1,38 @@
+.last-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-family: monospace;
+
+  &.buy {
+    color: $Buy-quote-price-text;
+    background-color: $Buy-quote-accumulative-total-size-bar;
+  }
+  &.sell {
+    color: $Sell-quote-price-text;
+    background-color: $Sell-quote-accumulative-total-size-bar;
+  }
+
+  .number {
+    padding-right: 4px;
+  }
+
+  .icon-arrow {
+    width: 14px;
+    height: 14px;
+    mask-image: url('@/assets/IconArrowDown.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+
+    &.buy {
+      background-color: $Buy-quote-price-text;
+      transform: rotate(180deg);
+    }
+    &.sell {
+      background-color: $Sell-quote-price-text;
+    }
+  }
+}
