@@ -59,6 +59,9 @@ export const orderBookStore = defineStore({
       }, [])
 
       return sumTotal
+    },
+    maxTotal() {
+      return Math.max(...[...this.max8Asks, ...this.max8Bids].map(item => Number(item[2])))
     }
   },
   actions: {

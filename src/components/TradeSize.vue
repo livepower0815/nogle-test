@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { formatMoneyInt } from '@/utils/numberFormat.js'
 
 const props = defineProps({

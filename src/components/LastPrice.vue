@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue'
 import { formatNumberWithFixed } from '@/utils/numberFormat.js'
 
 const props = defineProps({
