@@ -1,0 +1,17 @@
+@keyframes buyAnimation {
+  0% {
+    background-color: $Animation-flash-green-background;
+  }
+  100% {
+    background-color: $Animation-flash-opacity-background;
+  }
+}
+
+@keyframes selldAnimation {
+  0% {
+    background-color: $Animation-flash-red-background;
+  }
+  100% {
+    background-color: $Animation-flash-opacity-background;
+  }
+}
