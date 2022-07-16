@@ -28,7 +28,8 @@ export const orderBookStore = defineStore({
       }
     }),
     asksMap: [...Array(8)].reduce((obj, _, i) => { obj[i] = '0'; return obj }, {}),
-    bidsMap: [...Array(8)].reduce((obj, _, i) => { obj[i] = '0'; return obj }, {})
+    bidsMap: [...Array(8)].reduce((obj, _, i) => { obj[i] = '0'; return obj }, {}),
+    prevSeqNum: 0
   }),
   getters: {
     asksArray() {
@@ -82,9 +83,18 @@ export const orderBookStore = defineStore({
       data.bids.forEach(item => {
         this.bidsMap[item[0]] = item[1]
       })
+
+      // init seqNum
+      this.prevSeqNum = data.seqNum
     },
     // for update
     deltaHandler(data) {
+      // Re-subscribe topic to get new snapshot if prevSeqNum of new data doesn’t match last data’s seqNum
+      if (data.prevSeqNum !== this.prevSeqNum) {
+        this.subscribeOrderBook()
+        return
+      }
+
       data.asks.forEach(item => {
         if (item[1] === '0') delete this.asksMap[item[0]]
         else this.asksMap[item[0]] = item[1]
@@ -93,6 +103,9 @@ export const orderBookStore = defineStore({
         if (item[1] === '0') delete this.bidsMap[item[0]]
         else this.bidsMap[item[0]] = item[1]
       })
+
+      // save current senNum for next compare
+      this.prevSeqNum = data.seqNum
     }
   }
 })

@@ -14,11 +14,27 @@ const props = defineProps({
 // flash-buy or flash-sell
 const flashClass = ref('')
 
-watch(() => props.size, (val, oldVal) => {
-  if (Number(val) > Number(oldVal)) flashClass.value = 'flash-sell'
-  else if (Number(val) > Number(oldVal)) flashClass.value = 'flash-buy'
-})
+watch(
+  () => props.size,
+  (val, oldVal) => {
+    if (Number(val) > Number(oldVal)) setSell()
+    else if (Number(val) < Number(oldVal)) setBuy()
+  }
+)
 
+const setSell = () => {
+  flashClass.value = ''
+  setTimeout(() => {
+    flashClass.value = 'flash-sell'
+  }, 0)
+}
+
+const setBuy = () => {
+  flashClass.value = ''
+  setTimeout(() => {
+    flashClass.value = 'flash-buy'
+  }, 0)
+}
 </script>
 
 <template>
