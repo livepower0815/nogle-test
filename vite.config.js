@@ -7,6 +7,7 @@ const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fil
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/nogle-test/dist/',
   plugins: [vue()],
   resolve: {
     alias: {
